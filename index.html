@@ -1,0 +1,76 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta property="nostr:site"
+    content="naddr1qqvkyun4vajk6ctw8fsnycf4xvex2dmzxv6nqde5vc6szrnhwden5te0dehhxtnvdakz7qg4waehxw309aex2mrp0yhxgctdw4eju6t09uq35amnwvaz7tmjv4kxz7fwwd5xjarxdaexxefwdahx2tcpremhxue69uhkummnw3ez6ur4vgh8wetvd3hhyer9wghxuet59uq36amnwvaz7tmwdaehgu3wd46hg6tw09mkzmrvv46zucm0d5hszxrhwden5te0wfjkccte9e3h2unjv4h8gtnx095j7qgewaehxw309aex2mrp0yh8xmn0wf6zuum0vd5kzmp0qythwumn8ghj7un9d3shjtnwdaehgu3wvfskuep0qyfhwumn8ghj7mmxve3ksctfdch8qatz9uqsuamnwvaz7tmwdaejumr0dshsz9thwden5te0wfjkccte9ejxzmt4wvhxjme0qyd8wumn8ghj7un9d3shjtnndp5hgen0wf3k2tn0dejj7qg7waehxw309ahx7um5wgkhqatz9emk2mrvdaexgetj9ehx2ap0qywhwumn8ghj7mn0wd68ytndw46xjmnewaskcmr9wshxxmmd9uq3samnwvaz7tmjv4kxz7fwvd6hyun9de6zuenedyhszxthwden5te0wfjkccte9eekummjwsh8xmmrd9skctcpzamhxue69uhhyetvv9ujumn0wd68ytnzv9hxgtcpzdmhxue69uhk7enxvd5xz6tw9ec82c30qythwumn8ghj7un9d3shjtnwwp6kyurjduhxxmmdqgsq36k72r04rkj2gt6acpz7xkehrypwqmt2spfpt0kr6ukudp7vkpqrqsqqqaes4yasyk" />
+
+  <!-- assumed by many themes, we always bundle it -->
+  <link rel="preload" as="script" href="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=">
+  <script type="module" crossorigin src="https://cdn.npubpro.com/index.js"></script>
+  <link rel="manifest" href="/nostr-site-demo/manifest.webmanifest"></head>
+
+<body>
+  <script>
+    function render() {
+      let path = new URL(window.location.href).searchParams.get("__renderPath");
+      console.log("path", path);
+      if (path && path.startsWith("/")) {
+        window.history.replaceState({}, null, path);
+      } else {
+        path = '';
+      }
+      window.nostrSite.renderCurrentPage(path);
+      window.removeEventListener("load", render);
+    };
+    window.addEventListener("load", render);
+  </script>
+
+  <section id="__nostr_site_loading_modal">
+    <div class="loader"></div>
+  </section>
+  <style>
+    #__nostr_site_loading_modal {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-color: #fff;
+      z-index: 1000000;
+      display: block;
+    }
+
+    #__nostr_site_loading_modal .loader {
+      width: 48px;
+      height: 48px;
+      border: 5px solid #bbb;
+      border-bottom-color: transparent;
+      border-radius: 50%;
+      display: inline-block;
+      box-sizing: border-box;
+      animation: rotation 1s linear infinite;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: -24px;
+      margin-top: -24px;
+    }
+
+    @keyframes rotation {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</body>
+
+</html>
